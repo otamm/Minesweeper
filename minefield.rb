@@ -59,8 +59,8 @@ class Minefield
     square = 1
     breaker = 0
     rowscols = []
-    possibilities = [[row + square,col],[row,col + square],[row + square,col + square],[row - square,col],[row,col - square],[row - square,col - square]]
-    if adjacent_mines(row,col) == 0
+    possibilities = [[row + square,col],[row,col + square],[row + square,col + square],[row - square,col],[row,col - square],[row - square,col - square],[row + square, col - square], [row - square, col + square]]
+    if adjacent_mines(row,col) == 0 && row + square <= @row_count && row - square >= 0 && col + square <= @column_count && col - square >= 0
       possibilities.each do |position|
         rowscols << position
       end
@@ -76,7 +76,7 @@ class Minefield
         else
           break
         end
-        possibilities = [[row + square,col],[row,col + square],[row + square,col + square],[row - square,col],[row,col - square],[row - square,col - square]]
+        possibilities = [[row + square,col],[row,col + square],[row + square,col + square],[row - square,col],[row,col - square],[row - square,col - square],[row + square, col - square], [row - square, col + square]]
       end
     end
       rowscols << [row,col]
